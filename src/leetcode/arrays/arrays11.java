@@ -2,7 +2,7 @@ package leetcode.arrays;
 
 public class arrays11 {
     public static void main(String[] args) {
-       int[] nums = {1,8,6,2,5,4,8,3,7};
+       int[] nums = {2,3,4,5,18,17,6};
        int area = maxArea(nums);
         System.out.println(area);
     }
@@ -14,7 +14,7 @@ public class arrays11 {
         while(l < r){
             int ans = Math.min(height[l],height[r]) * (r - l);
             area = Math.max(ans, area);
-            if(height[l] <= height[l]){
+            if(height[l] <= height[r]){
                 l++;
             }else{
                 r--;
