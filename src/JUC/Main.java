@@ -1,0 +1,15 @@
+package JUC;
+
+public class Main {
+    public static void main(String[] args) {
+        Thread thread = new Thread(() -> {
+            System.out.println(Thread.currentThread().getName() + "::" + Thread.currentThread().isDaemon());
+            while (true) {
+
+            }
+        },"a");
+        thread.setDaemon(true);
+        thread.start();
+        System.out.println(Thread.currentThread().getName()+"over");
+    }
+}
