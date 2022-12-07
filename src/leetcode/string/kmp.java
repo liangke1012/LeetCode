@@ -9,11 +9,17 @@ public class kmp {
         int[] next = getNext(s2);
         System.out.println(Arrays.toString(next));
         int k = strStr(s1,s2);
-
+        System.out.println(k+"");
     }
     public static int strStr(String haystack, String needle) {
         int[] next = getNext(needle);
         for (int i = 0,j=0; i < haystack.length(); i++) {
+
+            /**kmp核心算法
+            **/
+            while (j > 0 && haystack.charAt(i) != needle.charAt(j)){
+                j = next[j-1];
+            }
             if(haystack.charAt(i) == needle.charAt(j)){
                 j++;
             }
@@ -25,7 +31,7 @@ public class kmp {
     }
 
     /**
-     * kmp核心算法
+     * next数组
      * @param s
      * @return
      */
