@@ -92,4 +92,32 @@ public class lc206 {
         }
         return dummy.next;
     }
+
+    /**
+     * leetcode 92 给你单链表的头指针 head 和两个整数 left 和 right ，其中 left <= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。
+     * @param head
+     * @param left
+     * @param right
+     * @return
+     */
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+         ListNode dummpNode = new ListNode(0);
+         dummpNode.next = head;
+         ListNode pre = dummpNode;
+        for (int i = 0; i < left - 1; i++) {
+            pre = pre.next;
+        }
+        ListNode rightNode = pre;
+        for (int i = 0; i < right-left+1; i++) {
+           rightNode = rightNode.next;
+        }
+        ListNode leftNode = pre.next;
+        ListNode cur = rightNode.next;
+        pre.next = null;
+        rightNode.next = null;
+        reverseList(leftNode);
+        pre.next = rightNode;
+        leftNode.next = cur;
+        return dummpNode.next;
+    }
 }
