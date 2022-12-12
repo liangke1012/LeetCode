@@ -11,6 +11,14 @@ public class forTest {
         String s = countAndSaylc38.countAndSay(4);
         System.out.println(s);
 
+        StringAddandMuplti stringAddandMuplti = new StringAddandMuplti();
+        String s1 = stringAddandMuplti.addStrings("234", "123");
+        System.out.println(s1);
+
+        String s2 = stringAddandMuplti.multiply("123","586");
+        System.out.println(s2);
+
+
 
     }
 }

@@ -2,10 +2,9 @@ package leetcode.arrays;
 
 public class forTest {
     public static void main(String[] args) {
-        int[] nums1 = {1,2,3,0,0,0};
-        int[] nums2 = {2,5,6};
-        lc88 lc88 = new lc88();
-        lc88.merge(nums1,3,nums2,3);
+       int[][] matrix = {{1,3,5,7},{10,11,16,20},{23,30,34,60}};
+       SearchMatrix searchMatrix = new SearchMatrix();
+        searchMatrix.searchMatrix(matrix, 13);
 
     }
 }
