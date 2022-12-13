@@ -7,5 +7,9 @@ public class forTest {
         System.out.println(n+"");
         int n1 = lc509.optFib(6);
         System.out.println(n1+"");
+
+        climbStairs climbStairs = new climbStairs();
+        int i = climbStairs.climbStairs31(5);
+        System.out.println(i+"");
     }
 }
