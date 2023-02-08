@@ -17,9 +17,9 @@ public class Lock_8 {
 
         new Thread(() -> {
             try {
-                // phone.sendEmail();
-                // phone.getHello();
-                phone.sendEmail();
+                phone2.sendEmail();
+//                phone.getHello();
+//                phone.sendEmail();
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,9 +1,11 @@
 package JUC.sync;
 
+import java.util.concurrent.TimeUnit;
+
 public class Phone {
-    public synchronized void sendSMS() throws Exception {
+    public static synchronized void sendSMS() throws Exception {
         //停留4秒
-        //TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(4);
         System.out.println("------sendSMS");
     }
 

@@ -1,31 +1,52 @@
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 
 
 public class Test1 {
     public static void main(String[] args) {
-        int[] nums = {1,2,3,4};
-        List<List<Integer>> subsets = getSubSets(nums);
-        System.out.println(subsets.toString());
+        Scanner sc = new Scanner(System.in);
+         int N = sc.nextInt();
+
+        Map<Integer,int[]> map = new HashMap<>();
+        int[] dayInts = new int[30];
+        for (int i = 0; i < 30; i++) {
+            dayInts[i] = sc.nextInt();
+        }
+
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < dayInts[i]; j++) {
+                int input = sc.nextInt();
+                if(input > N -1){
+                    continue;
+                }
+                int[] temp = new int[2];
+                if(map.containsKey(input)){
+                    temp = map.get(input);
+                    temp[1] ++;
+                }else{
+                    temp[0] = i;
+                    temp[1] = 1;
+                }
+                map.put(input,temp);
+            }
+        }
+
+        List<Map.Entry<Integer,int[]>> mapList = new ArrayList<>(map.entrySet());
+        mapList.sort( (a,b) -> {
+            if(b.getValue()[1] < a.getValue()[1]){
+                return -1;
+            }else if(b.getValue()[1] == a.getValue()[1]){
+                if(b.getValue()[0] > a.getValue()[0]){
+                    return -1;
+                }
+            }
+            return 1;
+        });
+
+        String res = "";
+        for (int i = 0; i < (mapList.size() < 5? mapList.size() : 5); i++) {
+              res+= mapList.get(i).getKey() + " ";
+        }
+        System.out.println(res.substring(0,res.length()-1));
     }
 
-    private static List<List<Integer>> getSubSets(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
-        List<Integer> path = new ArrayList<>();
-        backtracking(nums,0,path,res);
-        return res;
-    }
-
-    private static void backtracking(int[] nums, int index, List<Integer> path, List<List<Integer>> res) {
-        res.add(new ArrayList<>(path));
-        if(index >= nums.length){
-            return;
-        }
-        for (int i = index; i < nums.length; i++) {
-            path.add(nums[i]);
-            backtracking(nums,i+1,path,res);
-            path.remove(path.size() - 1);
-        }
-    }
 }
