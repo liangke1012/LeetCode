@@ -1,52 +1,76 @@
 import java.util.*;
 
+class MyThread{
+    int num = 1;
+    int flag = 1;
 
-public class Test1 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-         int N = sc.nextInt();
-
-        Map<Integer,int[]> map = new HashMap<>();
-        int[] dayInts = new int[30];
-        for (int i = 0; i < 30; i++) {
-            dayInts[i] = sc.nextInt();
-        }
-
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < dayInts[i]; j++) {
-                int input = sc.nextInt();
-                if(input > N -1){
-                    continue;
+    public void increase_1(){
+        while(num < 99){
+            synchronized (this){
+                while (flag != 1){
+                    try{
+                        wait();
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
                 }
-                int[] temp = new int[2];
-                if(map.containsKey(input)){
-                    temp = map.get(input);
-                    temp[1] ++;
-                }else{
-                    temp[0] = i;
-                    temp[1] = 1;
-                }
-                map.put(input,temp);
+                System.out.println(Thread.currentThread().getName() + ": " + (num++) );
+                flag = 2;
+                notifyAll();
             }
         }
-
-        List<Map.Entry<Integer,int[]>> mapList = new ArrayList<>(map.entrySet());
-        mapList.sort( (a,b) -> {
-            if(b.getValue()[1] < a.getValue()[1]){
-                return -1;
-            }else if(b.getValue()[1] == a.getValue()[1]){
-                if(b.getValue()[0] > a.getValue()[0]){
-                    return -1;
-                }
-            }
-            return 1;
-        });
-
-        String res = "";
-        for (int i = 0; i < (mapList.size() < 5? mapList.size() : 5); i++) {
-              res+= mapList.get(i).getKey() + " ";
-        }
-        System.out.println(res.substring(0,res.length()-1));
     }
 
+    public void increase_2(){
+        while(num < 99){
+            synchronized (this){
+                while (flag != 2){
+                    try{
+                        wait();
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println(Thread.currentThread().getName() + ": " + (num++) );
+                flag = 3;
+                notifyAll();
+            }
+        }
+    }
+
+    public void increase_3(){
+        while(num < 100){
+            synchronized (this){
+                while (flag != 3){
+                    try{
+                        wait();
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println(Thread.currentThread().getName() + ": " + (num++) );
+                flag = 1;
+                notifyAll();
+            }
+        }
+    }
+
+}
+public class Test1 {
+    public static void main(String[] args) {
+        MyThread myThread = new MyThread();
+        Thread t1 = new Thread(() ->{
+           myThread.increase_1();
+        });
+        Thread t2 = new Thread(() ->{
+            myThread.increase_2();
+        });
+        Thread t3 = new Thread(() ->{
+            myThread.increase_3();
+        });
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
 }
