@@ -3,8 +3,6 @@ package leetcode.tanxin;
 import java.util.Arrays;
 import java.util.Map;
 
-import static sun.swing.MenuItemLayoutHelper.max;
-
 public class lc455 {
     public int findContentChildren(int[] g, int[] s) {
         Arrays.sort(g);
