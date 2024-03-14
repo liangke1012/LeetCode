@@ -10,6 +10,7 @@ public class String03 {
     public static void main(String[] args) {
         String s1 = "abcabcbb";
         int len = lengthOfLongestSubstring(s1);
+        System.out.println(len);
     }
 
     private static int lengthOfLongestSubstring(String s1) {
