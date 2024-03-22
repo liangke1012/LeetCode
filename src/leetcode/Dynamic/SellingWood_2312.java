@@ -10,6 +10,6 @@ public class SellingWood_2312 {
     }
 
     private static long sellingWood(int m, int n, int[][] prices) {
-
+        return 1L;
     }
 }
