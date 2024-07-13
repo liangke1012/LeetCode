@@ -1,6 +1,5 @@
 package huawei;
 
-import edu.princeton.cs.algs4.In;
 
 import java.util.*;
 import java.util.stream.Collectors;

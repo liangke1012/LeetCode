@@ -10,7 +10,7 @@ public class CapitalizeTitle2129 {
     private static String capitalizeTitle(String title) {
         StringBuilder ans = new StringBuilder();
         for(String str : title.split(" ")) {
-            if (!ans.isEmpty()) {
+            if (ans.length() != 0) {
                 ans.append(" ");
             }
             if (str.length() > 2){
